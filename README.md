@@ -32,10 +32,11 @@ def menu_builder(class_name):
 class MainMenu:
     def quit(self):
         sys.exit(0)
-
-# returns 'main menu'
-![screenshot](assets/images.png)
 ```
+
+## returns 'main menu'
+
+![screenshot](assets/images.png)
 
 ## Contributing
 
