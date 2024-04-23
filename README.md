@@ -36,7 +36,7 @@ class MainMenu:
 
 ## returns 'main menu'
 
-![screenshot](assets/images.png)
+![screenshot](assets/image.png)
 
 ## Contributing
 
