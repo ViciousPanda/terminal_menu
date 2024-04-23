@@ -12,6 +12,12 @@ descriptive only and hidden from the end user.
 """
 
 import os
+import sys
+
+
+def menu_builder(class_name):
+    menu_instance = Menu(class_name)
+    menu_instance.draw()
 
 
 class Menu:
@@ -60,6 +66,7 @@ class Menu:
             self.draw()
         else:
             self.option = self.dct[int(usr_select)]
+            self.run_menu()
 
     # check if input is a number
     def is_valid_option(self, usr_select):
@@ -72,3 +79,46 @@ class Menu:
         if int(usr_select) in self.dct:
             return True
         return False
+
+    def run_menu(self):
+        getattr(globals()[self.class_name_str](), self.option)()
+
+
+class MainMenu:
+
+    def option_one(self):
+        print("Main menu option one")
+
+    def option_two(self):
+        print("Main menu option two")
+
+    def submenu_1(self):
+        menu_builder(SubMenuOne)
+
+    def quit(self):
+        print("Quit program" + "\n")
+        sys.exit(0)
+
+
+class SubMenuOne:
+
+    def option_one(self):
+        print("submenu one option one")
+
+    def option_two(self):
+        print("submenu one option two")
+
+    def back(self):
+        menu_builder(MainMenu)
+
+    def quit(self):
+        print("Quit program" + "\n")
+        sys.exit(0)
+
+
+"""
+def menu_builder(class_name):
+    menu_instance = Menu(class_name)
+    menu_instance.draw()
+    getattr(globals()[menu_instance.class_name_str](), menu_instance.option)()
+"""
