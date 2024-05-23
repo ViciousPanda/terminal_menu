@@ -3,9 +3,18 @@
 Dynamic Python menu for the terminal
 By Jacob Gesink
 
-This menu allows you to write classes and functions directly into menu items. It allows for submenu nestling and should be a quick sollution to any python menu that requires the terminal window for user selection.
+Spend less time on user inputs and more time on coding.
 
-The naming of menu items is linked to the function names. Class names are descriptive only and hidden from the end user.
+This menu allows you to write classes and functions directly into menu items.
+It allows for submenu nestling and should be a quick solution to any python
+project that requires the terminal window for user selection.
+
+## Features:
+
+- Create a dynamic menu directly from the functions in a class
+- Naming of menu items is linked to the function names
+- Class names are descriptive only and hidden from the end user
+- **init** is ignored in the menu building and can be freely used
 
 ## Installation
 
@@ -17,6 +26,7 @@ import menu.py into your project.
 
 ```python
 from menu import Menu
+import sys
 
 # use function menu_builder to make a menu
 def menu_builder(class_name):
