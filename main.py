@@ -11,7 +11,47 @@ descriptive only and hidden from the end user.
 
 """
 
-from menu import menu_builder, MainMenu
+from menu import Menu
+import sys
+
+
+# use function menu_builder to make a menu
+def menu_builder(class_name):
+    menu_instance = Menu(class_name)
+    menu_instance.draw()
+    getattr(globals()[menu_instance.class_name_str](), menu_instance.option)()
+
+
+class MainMenu:
+
+    def option_one(self):
+        print("Main menu option one")
+
+    def option_two(self):
+        print("Main menu option two")
+
+    def submenu_1(self):
+        menu_builder(SubMenuOne)
+
+    def quit(self):
+        print("Quit program" + "\n")
+        sys.exit(0)
+
+
+class SubMenuOne:
+
+    def option_one(self):
+        print("submenu one option one")
+
+    def option_two(self):
+        print("submenu one option two")
+
+    def back(self):
+        menu_builder(MainMenu)
+
+    def quit(self):
+        print("Quit program" + "\n")
+        sys.exit(0)
 
 
 def main():

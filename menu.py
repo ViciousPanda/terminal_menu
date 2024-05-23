@@ -12,12 +12,6 @@ descriptive only and hidden from the end user.
 """
 
 import os
-import sys
-
-
-def menu_builder(class_name):
-    menu_instance = Menu(class_name)
-    menu_instance.draw()
 
 
 class Menu:
@@ -36,7 +30,7 @@ class Menu:
     def construct(self, class_name):
         menu_lst = []
         for key, value in class_name.__dict__.items():
-            if "function" in str(value):
+            if "function" in str(value) and key != "__init__":
                 menu_lst.append(key)
         self.dct = dict(enumerate(menu_lst, start=1))
 
@@ -52,7 +46,7 @@ class Menu:
 
     # draw main menu
     def draw(self):
-        self.cls()
+        # self.cls()
         for key, value in self.dct.items():
             print("[ {} ] for {}".format(key, value))
         self.user_input()
@@ -66,7 +60,7 @@ class Menu:
             self.draw()
         else:
             self.option = self.dct[int(usr_select)]
-            self.run_menu()
+            return self.option
 
     # check if input is a number
     def is_valid_option(self, usr_select):
@@ -79,46 +73,3 @@ class Menu:
         if int(usr_select) in self.dct:
             return True
         return False
-
-    def run_menu(self):
-        getattr(globals()[self.class_name_str](), self.option)()
-
-
-class MainMenu:
-
-    def option_one(self):
-        print("Main menu option one")
-
-    def option_two(self):
-        print("Main menu option two")
-
-    def submenu_1(self):
-        menu_builder(SubMenuOne)
-
-    def quit(self):
-        print("Quit program" + "\n")
-        sys.exit(0)
-
-
-class SubMenuOne:
-
-    def option_one(self):
-        print("submenu one option one")
-
-    def option_two(self):
-        print("submenu one option two")
-
-    def back(self):
-        menu_builder(MainMenu)
-
-    def quit(self):
-        print("Quit program" + "\n")
-        sys.exit(0)
-
-
-"""
-def menu_builder(class_name):
-    menu_instance = Menu(class_name)
-    menu_instance.draw()
-    getattr(globals()[menu_instance.class_name_str](), menu_instance.option)()
-"""
